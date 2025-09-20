@@ -39,7 +39,7 @@ jobs:
     - run: npm i -g @bubblewrap/cli
     
     - run: |
-        bubblewrap init --manifest ${{ github.event.inputs.manifest_json_url }} -y && \
+        yes | bubblewrap init --manifest ${{ github.event.inputs.manifest_json_url }} && \
         bubblewrap build && \
         ls -R
         
