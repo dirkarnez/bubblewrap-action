@@ -12,6 +12,11 @@ bubblewrap-playground
 - [Using Digital Asset Links  |  Google Digital Asset Links  |  Google for Developers](https://developers.google.com/digital-asset-links/v1/using)
 - [Getting Started with TWA: How to set up and deploy it on your Android](https://milansurelia.hashnode.dev/getting-started-with-twa-how-to-set-up-and-deploy-it-on-your-android-app)
 
+### Keystore
+- [Android Keystore system  |  Security  |  Android Developers](https://developer.android.com/privacy-and-security/keystore)
+- [使用Android KeyStore 儲存敏感性資料. 範例 | by Joe Tsai | Joe Blog | Medium](https://medium.com/joe-tsai/%E4%BD%BF%E7%94%A8keystore-%E5%84%B2%E5%AD%98%E6%95%8F%E6%84%9F%E6%80%A7%E8%B3%87%E6%96%99-92ad9b236e58)
+    - [joetsaitw/AndroidKeyStore: 示範如何使用 Android KeyStore System 來加解密字串，並存入 SharedPreference](https://github.com/joetsaitw/AndroidKeyStore)
+  
 ### Notes
 - `bubblewrap init` cannot be CICD due to lots of critical console inputs. Initialize on local machine:
     1. `npx bubblewrap init --manifest https://dirkarnez.github.io/video-player/manifest.json`
