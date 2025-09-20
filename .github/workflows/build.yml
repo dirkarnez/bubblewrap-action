@@ -50,7 +50,7 @@ jobs:
         
     - name: Build TWA
       run: |
-        echo "${{ secrets.KEYSTORE_BASE64_ENCODED }}" | openssl enc -base64 -d -A -out ./android.keystore && \
+        echo "${{ secrets.KEYSTORE_BASE64_ENCODED }}" | base64 -d > ./android.keystore && \
         FULLPATH=$(realpath "./android.keystore") && \
         echo $FULLPATH && \
         echo y | bubblewrap build --skipPwaValidation --signingKeyPath "$FULLPATH"
