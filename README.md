@@ -5,5 +5,15 @@ bubblewrap-action
 - [bubblewrap/packages/cli at main · GoogleChromeLabs/bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap/tree/main/packages/cli#setting-up-the-environment)
 - [Sign your app  |  Android Studio  |  Android Developers](https://developer.android.com/studio/publish/app-signing#sign-apk)
 
+### Notes
+- `bubblewrap init` cannot be CICD. Initialize on local machine:
+    1. `npx bubblewrap init --manifest https://dirkarnez.github.io/video-player/manifest.json`
+        - JDK installed to `%USERPROFILE%\.bubblewrap\jdk`
+        - Configuration is written to `%USERPROFILE%\.bubblewrap\config.json`
+            - ```json
+                {"jdkPath":"\\Downloads\\OpenJDK17U-jdk_x64_windows_hotspot_17.0.14_7\\jdk-17.0.14+7","androidSdkPath":"\\.bubblewrap\\android_sdk"}
+              ```
+        - 
 ### Examples
 - https://dirkarnez.github.io/video-player/manifest.json
+    - https://dirkarnez.github.io/video-player/favicon-32x32.png

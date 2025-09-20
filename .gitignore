@@ -1,0 +1,9 @@
+*.apk
+*.aab
+*.keystore
+*.keystore.encoded*
+*.idsig
+.gradle/
+app/build/
+build
+manifest-checksum.txt

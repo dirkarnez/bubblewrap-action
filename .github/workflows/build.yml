@@ -37,22 +37,30 @@ jobs:
         node-version: ${{ matrix.node-version }}
         
     - run: npm i -g @bubblewrap/cli
+
+    - name: Build TWA
+      run: |
+        echo "${{ secrets.KEYSTORE_ENCODED }}" > android.keystore && \
+        bubblewrap build --skipPwaValidation
+      env:
+        BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
     
     - run: |
-        yes | bubblewrap init --manifest ${{ github.event.inputs.manifest_json_url }} && \
-        bubblewrap build && \
         ls -R
         
-    # - name: Archive Release
-    #   uses: thedoctor0/zip-release@master
-    #   with:
-    #     type: 'zip'
-    #     path: ${{ github.event.repository.name }}*
-    #     filename: "${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip"
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        path: |
+          "app-release-bundle.aab"
+          "app-release-signed.apk"
+        filename: "${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip"
         
-    # - name: Release prebuilt
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     artifacts: "${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip"
-    #     allowUpdates: true
-    #     token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release prebuilt
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "${{ github.event.repository.name }}-${{ github.ref_name }}-node-v${{ matrix.node-version }}.zip"
+        allowUpdates: true
+        token: ${{ secrets.GITHUB_TOKEN }}
