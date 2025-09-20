@@ -42,7 +42,7 @@ jobs:
     - run: |
         mkdir -pv ~/.bubblewrap && \
         cat << EOF > ~/.bubblewrap/config.json
-        {"jdkPath": "${{ steps.jdk.outputs.path }}", "androidSdkPath": "~/.android/sdk"}
+        {"jdkPath": "${{ steps.jdk.outputs.path }}", "androidSdkPath": "/usr/local/lib/android/sdk/"}
         EOF
 
     # bubblewrap should not keep recommending when i proactively set the config
