@@ -40,6 +40,7 @@ jobs:
     - run: npm i -g @bubblewrap/cli
     
     - run: |
+        mkdir -pv ~/.bubblewrap && \
         cat << EOF > ~/.bubblewrap/config.json
         {"jdkPath": "${{ steps.jdk.outputs.path }}", "androidSdkPath": "~/.android/sdk"}
         EOF
