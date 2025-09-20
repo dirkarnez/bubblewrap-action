@@ -23,10 +23,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - uses: actions/setup-java@v5
-    #   with:
-    #     distribution: 'temurin' # See 'Supported distributions' for available options
-    #     java-version: '17'
+    - id: jdk
+      uses: actions/setup-java@v5
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '17'
+        
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
     
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
@@ -34,6 +38,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         
     - run: npm i -g @bubblewrap/cli
+    
+    - run: |
+        bubblewrap updateConfig --androidSdkPath "~/.android/sdk" --jdkPath "${{ steps.jdk.outputs.path }}"
 
     - name: Build TWA
       run: |
