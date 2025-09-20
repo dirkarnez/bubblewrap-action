@@ -66,8 +66,8 @@ jobs:
       with:
         type: 'zip'
         path: |
-          "app-release-bundle.aab"
-          "app-release-signed.apk"
+          app-release-bundle.aab
+          app-release-signed.apk
         filename: "${{ github.event.repository.name }}-${{ github.ref_name }}-node-v${{ matrix.node-version }}.zip"
         
     - name: Release prebuilt
