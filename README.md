@@ -5,6 +5,7 @@ bubblewrap-playground
 - [bubblewrap/packages/cli at main · GoogleChromeLabs/bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap/tree/main/packages/cli#setting-up-the-environment)
 - [Sign your app  |  Android Studio  |  Android Developers](https://developer.android.com/studio/publish/app-signing#sign-apk)
 - [Bubblewrap 项目使用教程：从 PWA 到 Android 应用的无缝转换-CSDN博客](https://blog.csdn.net/gitblog_00097/article/details/142242987)
+- [How to Convert Your Website into an Android App Using Bubblewrap](https://www.freecodecamp.org/news/how-to-convert-your-website-into-an-android-app-using-bubblewrap/)
 
 ### Notes
 - `bubblewrap init` cannot be CICD due to lots of critical console inputs. Initialize on local machine:
