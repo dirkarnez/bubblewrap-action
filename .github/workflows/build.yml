@@ -40,8 +40,13 @@ jobs:
     - run: npm i -g @bubblewrap/cli
     
     - run: |
-        bubblewrap updateConfig --androidSdkPath "~/.android/sdk" --jdkPath "${{ steps.jdk.outputs.path }}"
+        cat << EOF > ~/.bubblewrap/config.json
+        {"jdkPath": "${{ steps.jdk.outputs.path }}", "androidSdkPath": "~/.android/sdk"}
+        EOF
 
+    # bubblewrap should not keep recommending when i proactively set the config
+    # bubblewrap updateConfig --androidSdkPath "~/.android/sdk" --jdkPath "${{ steps.jdk.outputs.path }}"
+        
     - name: Build TWA
       run: |
         echo "${{ secrets.KEYSTORE_BASE64_ENCODED }}" > android.keystore && \
