@@ -4,20 +4,17 @@
 name: Node.js CI
 
 on:
-  workflow_dispatch:
-    inputs:
-      manifest_json_url:
-        description: 'Something like https://my-twa.com/manifest.json'
-        required: true
-        type: string
-        
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' 
+      
 permissions:
     contents: write
     
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
@@ -40,8 +37,8 @@ jobs:
 
     - name: Build TWA
       run: |
-        echo "${{ secrets.KEYSTORE_ENCODED }}" > android.keystore && \
-        bubblewrap build --skipPwaValidation
+        echo "${{ secrets.KEYSTORE_BASE64_ENCODED }}" > android.keystore && \
+        echo y | bubblewrap build --skipPwaValidation
       env:
         BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -56,7 +53,7 @@ jobs:
         path: |
           "app-release-bundle.aab"
           "app-release-signed.apk"
-        filename: "${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.os }}.zip"
+        filename: "${{ github.event.repository.name }}-${{ github.ref_name }}-node-v${{ matrix.node-version }}.zip"
         
     - name: Release prebuilt
       uses: ncipollo/release-action@v1
