@@ -16,6 +16,7 @@ bubblewrap-playground
               {"jdkPath":"\\Downloads\\OpenJDK17U-jdk_x64_windows_hotspot_17.0.14_7\\jdk-17.0.14+7","androidSdkPath":"\\.bubblewrap\\android_sdk"}
               ```
 - Use [pwa-builder/PWABuilder](https://github.com/pwa-builder/PWABuilder) to create PWA first
+- `signingKey.path` inside `twa-manifest.json` expects a full path. put relative path for security and specify full path on CLI: `bubblewrap build --signingKeyPath "$FULLPATH"`
 
 ### Demonstrating
 - https://dirkarnez.github.io/video-player/manifest.json
